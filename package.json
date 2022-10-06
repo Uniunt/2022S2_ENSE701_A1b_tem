@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "client": "cd liyijun_app && npm run start",
+    "client": "cd frontend && npm run start",
     "app": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
     
