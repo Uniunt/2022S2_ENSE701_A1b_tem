@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
-import axios from 'axios';
-
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "../App.css";
+import axios from "axios";
 
 class CreateBook extends Component {
   constructor() {
     super();
     this.state = {
-      title: '',
-      isbn:'',
-      author:'',
-      description:'',
-      published_date:'',
-      publisher:'',
-      status:'',
-      whatever:''
+      title: "",
+      isbn: "",
+      author: "",
+      description: "",
+      published_date: "",
+      publisher: "",
+      status: "",
+      whatever: "",
     };
   }
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const data = {
@@ -34,27 +33,28 @@ class CreateBook extends Component {
       published_date: this.state.published_date,
       publisher: this.state.publisher,
       status: this.state.status,
-      whatever: this.state.whatever
+      whatever: this.state.whatever,
     };
 
     axios
-      .post('https://liyijunapp.herokuapp.com/api/books', data)
-      .then(res => {
+      .post("https://a1btest114514.herokuapp.com//api/books", data)
+      //.post('https://liyijunapp.herokuapp.com/api/books', data)
+      .then((res) => {
         this.setState({
-          title: '',
-          isbn:'',
-          author:'',
-          description:'',
-          published_date:'',
-          publisher:'',
-          status:'',
-          whatever:''
-        })
-        this.props.history.push('/');
+          title: "",
+          isbn: "",
+          author: "",
+          description: "",
+          published_date: "",
+          publisher: "",
+          status: "",
+          whatever: "",
+        });
+        this.props.history.push("/");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("Error in CreateBook!");
-      })
+      });
   };
 
   render() {
@@ -64,111 +64,112 @@ class CreateBook extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <br />
-              <Link to="/ShowBookList" className="btn btn-outline-warning float-left">
-                  Show BooK List
+              <Link
+                to="/ShowBookList"
+                className="btn btn-outline-warning float-left"
+              >
+                Show BooK List
               </Link>
             </div>
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Add Book</h1>
-              <p className="lead text-center">
-                  Create new book
-              </p>
+              <p className="lead text-center">Create new book</p>
 
               <form noValidate onSubmit={this.onSubmit}>
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='Title of the Article'
-                    name='title'
-                    className='form-control'
+                    type="text"
+                    placeholder="Title of the Article"
+                    name="title"
+                    className="form-control"
                     value={this.state.title}
                     onChange={this.onChange}
                   />
                 </div>
                 <br />
 
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='DOI'
-                    name='isbn'
-                    className='form-control'
+                    type="text"
+                    placeholder="DOI"
+                    name="isbn"
+                    className="form-control"
                     value={this.state.isbn}
                     onChange={this.onChange}
                   />
                 </div>
 
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='Author'
-                    name='author'
-                    className='form-control'
+                    type="text"
+                    placeholder="Author"
+                    name="author"
+                    className="form-control"
                     value={this.state.author}
                     onChange={this.onChange}
                   />
                 </div>
 
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='Claim SE Practices with Evidence'
-                    name='description'
-                    className='form-control'
+                    type="text"
+                    placeholder="Claim SE Practices with Evidence"
+                    name="description"
+                    className="form-control"
                     value={this.state.description}
                     onChange={this.onChange}
                   />
                 </div>
 
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='date'
-                    placeholder='published_date'
-                    name='published_date'
-                    className='form-control'
+                    type="date"
+                    placeholder="published_date"
+                    name="published_date"
+                    className="form-control"
                     value={this.state.published_date}
                     onChange={this.onChange}
                   />
                 </div>
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='Source'
-                    name='publisher'
-                    className='form-control'
+                    type="text"
+                    placeholder="Source"
+                    name="publisher"
+                    className="form-control"
                     value={this.state.publisher}
                     onChange={this.onChange}
                   />
                 </div>
 
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='1'
-                    name='status'
-                    className='form-control'
+                    type="text"
+                    placeholder="1"
+                    name="status"
+                    className="form-control"
                     value={this.state.status}
                     onChange={this.onChange}
                   />
                 </div>
 
-                <div className='form-group'>
+                <div className="form-group">
                   <input
-                    type='text'
-                    placeholder='2'
-                    name='whatever'
-                    className='form-control'
+                    type="text"
+                    placeholder="2"
+                    name="whatever"
+                    className="form-control"
                     value={this.state.whatever}
                     onChange={this.onChange}
                   />
                 </div>
 
                 <input
-                    type="submit"
-                    className="btn btn-outline-warning btn-block mt-4"
+                  type="submit"
+                  className="btn btn-outline-warning btn-block mt-4"
                 />
               </form>
-          </div>
+            </div>
           </div>
         </div>
       </div>
@@ -176,4 +177,4 @@ class CreateBook extends Component {
   }
 }
 
-export default CreateBook; 
+export default CreateBook;
