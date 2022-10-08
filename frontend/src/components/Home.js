@@ -26,6 +26,11 @@ const Home = (props) => {
         <Link to="/create-book" className="btn btn-outline-warning float-left">
           Submiting Key Info of Articles
         </Link>
+        <br/>
+        <br/>
+        <Link to="/SearchingArticle" className="btn btn-outline-warning float-left">
+          Searching Articles
+        </Link>
       </div>
       {/* <div className="showBooks">
         <Link to="/" className="btn btn-outline-warning float-left">

@@ -37,8 +37,8 @@ class CreateBook extends Component {
     };
 
     axios
-      .post("https://a1btest114514.herokuapp.com/api/books", data)
-      //.post('https://liyijunapp.herokuapp.com/api/books', data)
+      //.post("https://a1btest114514.herokuapp.com/api/books", data)
+      .post('https://liyijunapp.herokuapp.com/api/books', data)
       .then((res) => {
         this.setState({
           title: "",
@@ -51,6 +51,7 @@ class CreateBook extends Component {
           whatever: "",
         });
         this.props.history.push("/");
+        console.log("Success in CreateBook!");
       })
       .catch((err) => {
         console.log("Error in CreateBook!");
@@ -68,12 +69,15 @@ class CreateBook extends Component {
                 to="/ShowBookList"
                 className="btn btn-outline-warning float-left"
               >
-                Show BooK List
+                Show Article List
+              </Link>
+              <Link to="/" className="btn btn-outline-warning float-right">
+                Home
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Add Book</h1>
-              <p className="lead text-center">Create new book</p>
+              <h1 className="display-4 text-center">Add Article</h1>
+              <p className="lead text-center">Create new article</p>
 
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">

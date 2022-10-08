@@ -14,8 +14,8 @@ class ShowBookList extends Component {
 
   componentDidMount() {
     axios
-      .get("https://a1btest114514.herokuapp.com/api/books")
-      //.get('https://liyijunapp.herokuapp.com/api/books/')
+      //.get("https://a1btest114514.herokuapp.com/api/books")
+      .get("https://liyijunapp.herokuapp.com/api/books/")
       .then((res) => {
         this.setState({
           books: res.data,
@@ -53,19 +53,19 @@ class ShowBookList extends Component {
               >
                 + Add New Book
               </Link>
-              <br />
-              <br />
-              <hr />
+              <Link to="/" className="btn btn-outline-warning float-right">
+                Home
+              </Link>
             </div>
 
-            <div className="col-md-12">
-              <Link to="/Home" className="btn btn-outline-warning float-right">
+            {/* <div className="col-md-12">
+              <Link to="/" className="btn btn-outline-warning float-right">
                 Home
               </Link>
               <br />
               <br />
               <hr />
-            </div>
+            </div> */}
           </div>
 
           <div className="list">{bookList}</div>
