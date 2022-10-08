@@ -14,8 +14,8 @@ class ShowBookList extends Component {
 
   componentDidMount() {
     axios
-      //.get("https://a1btest114514.herokuapp.com/api/books")
-      .get("https://liyijunapp.herokuapp.com/api/books/")
+      .get("https://a1btest119.herokuapp.com/api/books")
+      // .get("https://liyijunapp.herokuapp.com/api/books/")
       .then((res) => {
         this.setState({
           books: res.data,
