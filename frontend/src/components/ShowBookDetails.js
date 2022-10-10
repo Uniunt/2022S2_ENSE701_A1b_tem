@@ -15,7 +15,7 @@ class showBookDetails extends Component {
     // console.log("Print id: " + this.props.match.params.id);
     axios
       .get(
-        '"https://a1btest119.herokuapp.com/api/books"' +
+        'https://a1btest119.herokuapp.com/api/books/' +
           this.props.match.params.id
       )
       //.get('https://liyijunapp.herokuapp.com/api/books/'+this.props.match.params.id)
@@ -32,7 +32,7 @@ class showBookDetails extends Component {
 
   onDeleteClick(id) {
     axios
-      .delete("https://a1btest119.herokuapp.com/api/books" + id)
+      .delete("https://a1btest119.herokuapp.com/api/books/" + id)
       //.delete("https://liyijunapp.herokuapp.com/api/books/" + id)
       .then((res) => {
         this.props.history.push("/");
