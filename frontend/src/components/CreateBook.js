@@ -13,8 +13,10 @@ class CreateBook extends Component {
       description: "",
       published_date: "",
       publisher: "",
-      status: "",
-      whatever: "",
+      //modireated
+      status: "no",
+      //analysed
+      whatever: "no",
     };
   }
 
@@ -32,7 +34,9 @@ class CreateBook extends Component {
       description: this.state.description,
       published_date: this.state.published_date,
       publisher: this.state.publisher,
+      //modireated
       status: this.state.status,
+      //analysed
       whatever: this.state.whatever,
     };
 
@@ -48,7 +52,9 @@ class CreateBook extends Component {
           description: "",
           published_date: "",
           publisher: "",
+          //modireated
           status: "",
+          //analysed
           whatever: "",
         });
         this.props.history.push("/");
@@ -147,7 +153,7 @@ class CreateBook extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                   <input
                     type="text"
                     placeholder="1"
@@ -156,9 +162,9 @@ class CreateBook extends Component {
                     value={this.state.status}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
 
-                <div className="form-group">
+                {/* <div className="form-group">
                   <input
                     type="text"
                     placeholder="2"
@@ -167,7 +173,7 @@ class CreateBook extends Component {
                     value={this.state.whatever}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
 
                 <input
                   type="submit"

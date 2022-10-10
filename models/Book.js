@@ -29,9 +29,11 @@ const BookSchema = new mongoose.Schema({
     default: Date.now,
   },
   status: {
+    //modireated
     type: String,
   },
   whatever: {
+    //analysed
     type: String,
   }
 });
