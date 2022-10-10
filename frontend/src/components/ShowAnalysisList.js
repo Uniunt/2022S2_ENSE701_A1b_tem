@@ -1,0 +1,78 @@
+import React, { Component } from "react";
+import "../App.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import BookCard from "./BookCard";
+
+class ShowBookList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://a1btest119.herokuapp.com/api/books")
+      //.get('https://liyijunapp.herokuapp.com/api/books/')
+      .then((res) => {
+        this.setState({
+          books: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log("Error from ShowBookList");
+      });
+  }
+
+  render() {
+    const books = this.state.books;
+    console.log("PrintBook: " + books);
+    let bookList;
+
+    if (!books) {
+      bookList = "there is no book record!";
+    } else {
+      bookList = books.map((book, k) => <BookCard book={book} key={k} />);
+    }
+
+    return (
+      <div className="ShowBookList">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <br />
+              <h2 className="display-4 text-center">Books List</h2>
+            </div>
+
+            <div className="col-md-11">
+              <Link
+                to="/create-book"
+                className="btn btn-outline-warning float-right"
+              >
+                + Add New Book
+              </Link>
+              <br />
+              <br />
+              <hr />
+            </div>
+
+            <div className="col-md-12">
+              <Link to="/Home" className="btn btn-outline-warning float-right">
+                Home
+              </Link>
+              <br />
+              <br />
+              <hr />
+            </div>
+          </div>
+
+          <div className="list">{bookList}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ShowBookList;
