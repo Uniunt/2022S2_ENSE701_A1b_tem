@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
+import ClickButton from "../components/ClickButton";
 
 class UpdateBookInfo extends Component {
+  moderateText = {
+    cheems: "yes",
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +18,7 @@ class UpdateBookInfo extends Component {
       description: "",
       published_date: "",
       publisher: "",
+      status: "",
     };
   }
 
@@ -33,6 +39,7 @@ class UpdateBookInfo extends Component {
           description: res.data.description,
           published_date: res.data.published_date,
           publisher: res.data.publisher,
+          status: res.data.status,
         });
       })
       .catch((err) => {
@@ -42,6 +49,11 @@ class UpdateBookInfo extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onModerate = () => {
+    this.setState({ [this.state.status]: this.moderateText.cheems });
+    // window.location.reload(false);
   };
 
   onSubmit = (e) => {
@@ -54,6 +66,7 @@ class UpdateBookInfo extends Component {
       description: this.state.description,
       published_date: this.state.published_date,
       publisher: this.state.publisher,
+      status: this.state.status,
     };
 
     axios
@@ -166,6 +179,24 @@ class UpdateBookInfo extends Component {
                 />
               </div>
 
+              <div className="form-group">
+                <label htmlFor="publisher">Moderated</label>
+                <button
+                  type="button"
+                  className="btn btn-outline-info btn-lg btn-block"
+                  onClick={this.onModerate.bind(this)}
+                >
+                  Moderate
+                </button>
+                <input
+                  type="text"
+                  name="status"
+                  className="form-control"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                />
+              </div>
+
               <button
                 type="submit"
                 className="btn btn-outline-info btn-lg btn-block"
@@ -173,6 +204,8 @@ class UpdateBookInfo extends Component {
                 Update Book
               </button>
             </form>
+
+            {/* <ClickButton /> */}
           </div>
         </div>
       </div>
