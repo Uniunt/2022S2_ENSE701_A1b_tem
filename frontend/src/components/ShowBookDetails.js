@@ -7,20 +7,20 @@ class showBookDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      book: {},
+      book: {}
     };
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
+    console.log("Print id: " + this.props.match.params.id);
     axios
       .get(
-        '"https://a1btest119.herokuapp.com/api/books"' +
+        'https://a1btest119.herokuapp.com/api/books/' +
           this.props.match.params.id
       )
       //.get('https://liyijunapp.herokuapp.com/api/books/'+this.props.match.params.id)
       .then((res) => {
-        // console.log("Print-showBookDetails-API-response: " + res.data);
+        console.log("Print-showBookDetails-API-response: " + res.data);
         this.setState({
           book: res.data,
         });

@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "app": "nodemon app.js",
+    "server": "nodemon server.js",
     "start": "node app.js",
     "client": "cd frontend && npm run start",
-    "app": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd frontend && npm run build",
     "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "server": "nodemon server.js",
+    "build": "cd frontend && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "concurrently --kill-others-on-fail \"npm run app\" \"cd frontend && npm run start\""
   },
   "author": "",

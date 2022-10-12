@@ -66,7 +66,6 @@ const PORT = process.env.PORT || 5000;
 //   response.sendFile(path.resolve(__dirname, "./2022_S1_CISE_Assignment1B_Group10-main/build", "index.html"));
 // });
 
-
 //production set by heroku
 if (process.env.NODE_ENV === 'production') {
   // serve front-end client from build folder

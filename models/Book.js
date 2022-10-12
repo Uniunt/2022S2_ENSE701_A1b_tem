@@ -28,12 +28,12 @@ const BookSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  status: {
+  claimed: {
     type: String,
   },
-  whatever: {
+  evidence: {
     type: String,
-  }
+  },
 });
 
 module.exports = Book = mongoose.model("book", BookSchema);

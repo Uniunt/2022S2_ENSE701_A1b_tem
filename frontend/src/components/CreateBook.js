@@ -13,8 +13,8 @@ class CreateBook extends Component {
       description: "",
       published_date: "",
       publisher: "",
-      status: "",
-      whatever: "",
+      claimed: "",
+      evidence: "",
     };
   }
 
@@ -26,30 +26,49 @@ class CreateBook extends Component {
     e.preventDefault();
 
     const data = {
+      // title: this.state.title,
+      // doi: this.state.doi,
+      // author: this.state.author,
+      // source: this.state.source,
+      // published_date: this.state.published_date,
+      // practice: this.state.practice,
+      // claimed: this.state.claimed,
+      // evidence: this.state.evidence,
+      // moderate: this.state.moderate,
+      // analysis: this.state.analysis,
       title: this.state.title,
       isbn: this.state.isbn,
       author: this.state.author,
       description: this.state.description,
       published_date: this.state.published_date,
       publisher: this.state.publisher,
-      status: this.state.status,
-      whatever: this.state.whatever,
+      claimed: this.state.claimed,
+      evidence: this.state.evidence,
     };
 
     axios
-      //.post("https://a1btest114514.herokuapp.com/api/books", data)
-      .post('https://a1btest119.herokuapp.com/api/books', data)
       // .post('https://liyijunapp.herokuapp.com/api/books', data)
+      .post("https://a1btest119.herokuapp.com/api/books", data)
       .then((res) => {
         this.setState({
+          // title: "",
+          // doi: "",
+          // author: "",
+          // source: "",
+          // published_date: "",
+          // practice: "",
+          // claimed: "",
+          // evidence: "",
+          // moderate: "",
+          // analysis: "",
           title: "",
           isbn: "",
           author: "",
           description: "",
           published_date: "",
           publisher: "",
-          status: "",
-          whatever: "",
+          claimed: "",
+          evidence: "",
         });
         this.props.history.push("/");
         console.log("Success in CreateBook!");
@@ -118,7 +137,7 @@ class CreateBook extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    placeholder="Claim SE Practices with Evidence"
+                    placeholder="Source"
                     name="description"
                     className="form-control"
                     value={this.state.description}
@@ -136,10 +155,11 @@ class CreateBook extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+
                 <div className="form-group">
                   <input
                     type="text"
-                    placeholder="Source"
+                    placeholder="SE Practice"
                     name="publisher"
                     className="form-control"
                     value={this.state.publisher}
@@ -150,10 +170,10 @@ class CreateBook extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    placeholder="1"
-                    name="status"
+                    placeholder="Claimed benefits"
+                    name="claimed"
                     className="form-control"
-                    value={this.state.status}
+                    value={this.state.claimed}
                     onChange={this.onChange}
                   />
                 </div>
@@ -161,10 +181,10 @@ class CreateBook extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    placeholder="2"
-                    name="whatever"
+                    placeholder="Evidence"
+                    name="evidence"
                     className="form-control"
-                    value={this.state.whatever}
+                    value={this.state.evidence}
                     onChange={this.onChange}
                   />
                 </div>
