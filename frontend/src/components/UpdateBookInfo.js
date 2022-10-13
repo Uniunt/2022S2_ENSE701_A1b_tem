@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
-import ClickButton from "../components/ClickButton";
 
 class UpdateBookInfo extends Component {
   moderateText = {
@@ -19,6 +18,7 @@ class UpdateBookInfo extends Component {
       published_date: "",
       publisher: "",
       status: "",
+      whatever: "",
     };
   }
 
@@ -40,6 +40,7 @@ class UpdateBookInfo extends Component {
           published_date: res.data.published_date,
           publisher: res.data.publisher,
           status: res.data.status,
+          whatever: res.data.status,
         });
       })
       .catch((err) => {
@@ -49,11 +50,10 @@ class UpdateBookInfo extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onModerate = () => {
-    this.setState({ [this.state.status]: this.moderateText.cheems });
-    // window.location.reload(false);
+    console.log("onModerate e.target.name " + e.target.name);
+    console.log("onModerate e.target.value " + e.target.value);
+    console.log("onModerate this.state.status " + this.state.status);
+    console.log("onModerate this.state.whatever " + this.state.whatever);
   };
 
   onSubmit = (e) => {
@@ -67,6 +67,7 @@ class UpdateBookInfo extends Component {
       published_date: this.state.published_date,
       publisher: this.state.publisher,
       status: this.state.status,
+      whatever: this.state.whatever,
     };
 
     axios
@@ -75,12 +76,8 @@ class UpdateBookInfo extends Component {
           this.props.match.params.id,
         data
       )
-      // .put(
-      //   "https://liyijunapp.herokuapp.com/api/books/" +
-      //     this.props.match.params.id,
-      //   data
-      // )
       .then((res) => {
+        console.log("success submission");
         this.props.history.push("/show-book/" + this.props.match.params.id);
       })
       .catch((err) => {
@@ -179,24 +176,6 @@ class UpdateBookInfo extends Component {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="publisher">Moderated</label>
-                <button
-                  type="button"
-                  className="btn btn-outline-info btn-lg btn-block"
-                  onClick={this.onModerate.bind(this)}
-                >
-                  Moderate
-                </button>
-                <input
-                  type="text"
-                  name="status"
-                  className="form-control"
-                  value={this.state.status}
-                  onChange={this.onChange}
-                />
-              </div>
-
               <button
                 type="submit"
                 className="btn btn-outline-info btn-lg btn-block"
@@ -204,8 +183,39 @@ class UpdateBookInfo extends Component {
                 Update Book
               </button>
             </form>
+          </div>
 
-            {/* <ClickButton /> */}
+          <div className="col-md-8 m-auto">
+            <form noValidate onClick={this.onChange}>
+              <div className="form-group">
+                {/* <label htmlFor="publisher">Moderated</label> */}
+                <br />
+                <button
+                  type="button"
+                  name="status"
+                  value={"yes"}
+                  className="btn btn-outline-info btn-lg btn-block"
+                >
+                  Moderate
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="col-md-8 m-auto">
+            <form noValidate onClick={this.onChange}>
+              <div className="form-group">
+                {/* <label htmlFor="publisher">Analyzed</label> */}
+                <button
+                  type="button"
+                  name="whatever"
+                  value={"yes"}
+                  className="btn btn-outline-info btn-lg btn-block"
+                >
+                  Analyze
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
