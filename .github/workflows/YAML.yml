@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: a1btest119/heroku-deploy@v3.12.12 # This is the action
+      - uses: 2022S2_ENSE701_A1b_tem/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "a1btest119" #Must be unique in Heroku
