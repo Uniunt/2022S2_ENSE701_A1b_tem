@@ -52,7 +52,8 @@ class ShowBookList extends Component {
 
     return (
       <div className="ShowBookList">
-        <div className="container">
+        {/* <div className="container"> */}
+        <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
               <br />

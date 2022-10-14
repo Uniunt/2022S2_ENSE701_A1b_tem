@@ -58,10 +58,16 @@
 
 .ShowBookList {
   background-color: #464688;
+  /* background-position: center;
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  min-width: 100px;
+  min-width: 100px; */
+  background-position: auto;
+  height: auto;
+  width: auto;
+  min-height: auto;
+  min-width: auto;
   color: white;
 }
 
@@ -79,7 +85,7 @@
   height: 700px;
   border: 1px solid rgba(0,0,.125);
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: 50px;
   overflow: hidden;
 }
 
