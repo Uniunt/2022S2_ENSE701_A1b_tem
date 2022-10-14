@@ -1,0 +1,36 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTargetElement = getTargetElement;
+
+function _react() {
+  const data = _interopRequireDefault(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getTargetElement(target, defaultElement) {
+  if (!target) {
+    return defaultElement;
+  }
+
+  let targetElement;
+
+  if (typeof target === 'function') {
+    targetElement = target();
+  } else if ('current' in target) {
+    targetElement = target.current;
+  } else {
+    targetElement = target;
+  }
+
+  return targetElement;
+}

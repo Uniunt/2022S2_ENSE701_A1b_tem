@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
+import { Toast } from "react-vant";
+import { Success } from "@react-vant/icons";
 
 class CreateBook extends Component {
   constructor() {
@@ -42,7 +44,7 @@ class CreateBook extends Component {
 
     axios
       //.post("https://a1btest114514.herokuapp.com/api/books", data)
-      .post('https://a1btest119.herokuapp.com/api/books', data)
+      .post("https://a1btest119.herokuapp.com/api/books", data)
       // .post('https://liyijunapp.herokuapp.com/api/books', data)
       .then((res) => {
         this.setState({
@@ -178,6 +180,14 @@ class CreateBook extends Component {
                 <input
                   type="submit"
                   className="btn btn-outline-warning btn-block mt-4"
+                  title="submitIcon"
+                  isLink
+                  onClick={() =>
+                    Toast({
+                      message: "Submitted!",
+                      icon: <Success />,
+                    })
+                  }
                 />
               </form>
             </div>

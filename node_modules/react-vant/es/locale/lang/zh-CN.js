@@ -1,0 +1,10 @@
+import { deepAssign } from '../../utils/deep-assign';
+import { base } from './base';
+const zhCN = deepAssign(base, {});
+
+const mergeLocale = (baseLocal, mergeLocal) => {
+  return deepAssign(baseLocal, mergeLocal);
+};
+
+export { mergeLocale };
+export default zhCN;

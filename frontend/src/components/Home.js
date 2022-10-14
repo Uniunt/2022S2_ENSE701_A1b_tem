@@ -9,11 +9,11 @@ const Home = (props) => {
         <h2 className="display-4 text-center">This is Home page!</h2>
         <p>G5 Group 1</p>
         <Link to="/ShowBookList" className="btn btn-outline-warning float-left">
-          Show Book List
+          Show Article List
         </Link>
         <br/>
         <br/>
-        <Link to="/" className="btn btn-outline-warning float-left">
+        {/* <Link to="/" className="btn btn-outline-warning float-left">
           Show Moderation List
         </Link>
         <br/>
@@ -22,7 +22,7 @@ const Home = (props) => {
           Show Analysis List
         </Link>
         <br/>
-        <br/>
+        <br/> */}
         <Link to="/create-book" className="btn btn-outline-warning float-left">
           Submiting Key Info of Articles
         </Link>

@@ -1,0 +1,133 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _react() {
+  const data = _interopRequireDefault(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _jsxRuntime() {
+  const data = require("react/jsx-runtime");
+
+  _jsxRuntime = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _clsx() {
+  const data = _interopRequireDefault(require("clsx"));
+
+  _clsx = function () {
+    return data;
+  };
+
+  return data;
+}
+
+var _utils = require("../utils");
+
+var _number = require("../utils/validate/number");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const [bem] = (0, _utils.createNamespace)('badge');
+
+const Badge = props => {
+  const {
+    content,
+    max,
+    dot,
+    showZero,
+    tag = 'div'
+  } = props;
+  const TagElement = tag;
+
+  const hasContent = () => {
+    if (props.content) {
+      return true;
+    }
+
+    return (0, _utils.isDef)(content) && content !== '' && (showZero || +content !== 0);
+  };
+
+  const renderContent = () => {
+    if (!dot && hasContent()) {
+      if ((0, _utils.isDef)(max) && (0, _number.isNumeric)(content === null || content === void 0 ? void 0 : content.toString()) && +content > max) {
+        return `${max}+`;
+      }
+
+      return content;
+    }
+
+    return null;
+  };
+
+  const renderBadge = () => {
+    if (hasContent() || props.dot) {
+      let style = {
+        background: props.color
+      };
+
+      if (props.offset) {
+        const [x, y] = props.offset;
+
+        if (props.children) {
+          style.top = (0, _utils.addUnit)(y);
+          style.right = (0, _utils.addUnit)(x);
+        } else {
+          style.marginTop = (0, _utils.addUnit)(y);
+          style.marginLeft = (0, _utils.addUnit)(x);
+        }
+      }
+
+      if (!props.children) {
+        style = Object.assign(Object.assign({}, props.style), style);
+      }
+
+      return (0, _jsxRuntime().jsx)("div", Object.assign({
+        className: (0, _clsx().default)({
+          [props.className]: props.className && !props.children
+        }, bem({
+          dot: props.dot,
+          fixed: !!props.children
+        })),
+        style: style
+      }, {
+        children: renderContent()
+      }));
+    }
+
+    return null;
+  };
+
+  if (props.children) {
+    return (0, _jsxRuntime().jsxs)(TagElement, Object.assign({
+      className: (0, _clsx().default)(bem('wrapper'), props.className),
+      style: props.style,
+      onClick: props.onClick,
+      onTouchStart: props.onTouchStart
+    }, {
+      children: [props.children, renderBadge()]
+    }));
+  }
+
+  return renderBadge();
+};
+
+Badge.defaultProps = {
+  tag: 'div',
+  showZero: true
+};
+var _default = Badge;
+exports.default = _default;

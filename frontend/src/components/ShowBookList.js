@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import "../App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -15,7 +15,6 @@ class ShowBookList extends Component {
   componentDidMount() {
     axios
       .get("https://a1btest119.herokuapp.com/api/books")
-      // .get("https://liyijunapp.herokuapp.com/api/books/")
       .then((res) => {
         this.setState({
           books: res.data,
@@ -25,6 +24,20 @@ class ShowBookList extends Component {
         console.log("Error from ShowBookList");
       });
   }
+
+  // SearchingBar = () => {
+  //   const [value, setValue] = useState("");
+
+  //   // return (
+  //   //   <div>
+  //   //     <Search
+  //   //       value={value}
+  //   //       onChange={setValue}
+  //   //       placeholder="请输入搜索关键词"
+  //   //     />
+  //   //   </div>
+  //   // );
+  // };
 
   render() {
     const books = this.state.books;
@@ -45,7 +58,10 @@ class ShowBookList extends Component {
               <br />
               <h2 className="display-4 text-center">Article List</h2>
             </div>
-
+            <div>
+              <input></input>
+              <button>Search</button>
+            </div>
             <div className="col-md-11">
               <Link
                 to="/create-book"
@@ -57,7 +73,6 @@ class ShowBookList extends Component {
                 Home
               </Link>
             </div>
-
             {/* <div className="col-md-12">
               <Link to="/" className="btn btn-outline-warning float-right">
                 Home

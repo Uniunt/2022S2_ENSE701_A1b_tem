@@ -1,0 +1,120 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _jsxRuntime() {
+  const data = require("react/jsx-runtime");
+
+  _jsxRuntime = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _react() {
+  const data = _interopRequireWildcard(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _clsx() {
+  const data = _interopRequireDefault(require("clsx"));
+
+  _clsx = function () {
+    return data;
+  };
+
+  return data;
+}
+
+var _swiper = _interopRequireDefault(require("../swiper"));
+
+var _utils = require("../utils");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const [bem] = (0, _utils.createNamespace)('tabs');
+
+const TabsContent = props => {
+  const innerEffect = (0, _react().useRef)(false);
+  const {
+    animated,
+    swipeable,
+    duration,
+    swiperRef
+  } = props;
+  const swiperProps = typeof swipeable === 'boolean' ? {} : swipeable;
+
+  const renderChildren = () => {
+    if (animated || swipeable) {
+      return (0, _jsxRuntime().jsx)(_swiper.default, Object.assign({}, swiperProps, {
+        ref: swiperRef,
+        rubberband: false,
+        stuckAtBoundary: true,
+        loop: false,
+        autoplay: false,
+        touchable: !!swipeable,
+        className: (0, _clsx().default)(bem('track')),
+        duration: +duration,
+        indicator: false,
+        onChange: idx => {
+          var _a;
+
+          if (innerEffect.current) {
+            innerEffect.current = false;
+            return;
+          }
+
+          (_a = props.onChange) === null || _a === void 0 ? void 0 : _a.call(props, idx);
+        }
+      }, {
+        children: _react().default.Children.map(props.children, child => (0, _jsxRuntime().jsx)(_swiper.default.Item, Object.assign({
+          style: {
+            cursor: !swipeable ? 'auto' : undefined
+          },
+          className: (0, _clsx().default)(bem('pane-wrapper'))
+        }, {
+          children: child
+        })))
+      }));
+    }
+
+    return props.children;
+  };
+
+  const swipeToCurrentTab = index => {
+    const swipe = swiperRef.current;
+    if (!swipe) return;
+
+    if (swipe.activeIndex !== index) {
+      innerEffect.current = true;
+      swipe.swipeTo(index);
+    }
+  };
+
+  (0, _react().useEffect)(() => {
+    swipeToCurrentTab(props.currentIndex);
+  }, [props.currentIndex]);
+  return (0, _jsxRuntime().jsx)("div", Object.assign({
+    className: (0, _clsx().default)(bem('content', {
+      animated: animated || swipeable
+    }))
+  }, {
+    children: renderChildren()
+  }));
+};
+
+var _default = TabsContent;
+exports.default = _default;

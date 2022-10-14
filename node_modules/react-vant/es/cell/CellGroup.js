@@ -1,0 +1,46 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import clsx from 'clsx';
+import { BORDER_TOP_BOTTOM } from '../utils/constant';
+import { createNamespace } from '../utils';
+const [bem] = createNamespace('cell-group');
+
+const CellGroup = props => {
+  const {
+    title,
+    border,
+    inset: insetP,
+    card
+  } = props;
+  const inset = card || insetP;
+
+  const renderGroup = () => _jsx("div", Object.assign({
+    className: clsx(bem({
+      inset
+    }), {
+      [BORDER_TOP_BOTTOM]: !inset && border
+    })
+  }, {
+    children: props.children
+  }));
+
+  const renderTitle = () => {
+    if (title) return _jsx("div", Object.assign({
+      className: clsx(bem('title'))
+    }, {
+      children: title
+    }));
+    return null;
+  };
+
+  return _jsxs("div", Object.assign({
+    className: props.className,
+    style: props.style
+  }, {
+    children: [renderTitle(), renderGroup()]
+  }));
+};
+
+CellGroup.defaultProps = {
+  border: true
+};
+export default CellGroup;

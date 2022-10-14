@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
+import { Toast} from "react-vant";
+import { Success } from "@react-vant/icons";
 
 class UpdateBookInfo extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +16,8 @@ class UpdateBookInfo extends Component {
       description: "",
       published_date: "",
       publisher: "",
+      status: "",
+      whatever: "",
     };
   }
 
@@ -33,6 +38,8 @@ class UpdateBookInfo extends Component {
           description: res.data.description,
           published_date: res.data.published_date,
           publisher: res.data.publisher,
+          status: res.data.status,
+          whatever: res.data.status,
         });
       })
       .catch((err) => {
@@ -42,6 +49,10 @@ class UpdateBookInfo extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    console.log("onModerate e.target.name " + e.target.name);
+    console.log("onModerate e.target.value " + e.target.value);
+    console.log("onModerate this.state.status " + this.state.status);
+    console.log("onModerate this.state.whatever " + this.state.whatever);
   };
 
   onSubmit = (e) => {
@@ -54,6 +65,8 @@ class UpdateBookInfo extends Component {
       description: this.state.description,
       published_date: this.state.published_date,
       publisher: this.state.publisher,
+      status: this.state.status,
+      whatever: this.state.whatever,
     };
 
     axios
@@ -62,12 +75,8 @@ class UpdateBookInfo extends Component {
           this.props.match.params.id,
         data
       )
-      // .put(
-      //   "https://liyijunapp.herokuapp.com/api/books/" +
-      //     this.props.match.params.id,
-      //   data
-      // )
       .then((res) => {
+        console.log("success submission");
         this.props.history.push("/show-book/" + this.props.match.params.id);
       })
       .catch((err) => {
@@ -83,12 +92,12 @@ class UpdateBookInfo extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                Show BooK List
+                Show Article List
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Book</h1>
-              <p className="lead text-center">Update Book's Info</p>
+              <h1 className="display-4 text-center">Edit Article</h1>
+              <p className="lead text-center">Update Article's Info</p>
             </div>
           </div>
 
@@ -169,11 +178,99 @@ class UpdateBookInfo extends Component {
               <button
                 type="submit"
                 className="btn btn-outline-info btn-lg btn-block"
+                title="updateIcon"
+                  isLink
+                  onClick={() =>
+                    Toast({
+                      message: "Updated!",
+                      icon: <Success />,
+                    })
+                  }
               >
-                Update Book
+                Update Article
               </button>
             </form>
           </div>
+
+          <div className="col-md-8 m-auto">
+            <form noValidate onClick={this.onChange}>
+              <div className="form-group">
+                {/* <label htmlFor="publisher">Moderated</label> */}
+                <br />
+                <button
+                  type="button"
+                  name="status"
+                  value={"yes"}
+                  className="btn btn-outline-info btn-lg btn-block"
+                  title="moderateIcon"
+                  isLink
+                  onClick={() =>
+                    Toast({
+                      message: "Moderated!",
+                      icon: <Success />,
+                    })
+                  }
+                >
+                  Moderate
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="col-md-8 m-auto">
+            <form noValidate onClick={this.onChange}>
+              <div className="form-group">
+                {/* <label htmlFor="publisher">Analyzed</label> */}
+                <button
+                  type="button"
+                  name="whatever"
+                  value={"yes"}
+                  className="btn btn-outline-info btn-lg btn-block"
+                  // title="文字提示"
+                  // isLink
+                  // onClick={() => Toast.info("Successfully")}
+                  title="analyzeIcon"
+                  isLink
+                  onClick={() =>
+                    Toast({
+                      message: "Analyzed!",
+                      icon: <Success />,
+                    })
+                  }
+                >
+                  Analyze
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* <>
+            <Cell
+              title="文字提示"
+              isLink
+              onClick={() => Toast.info("提示内容")}
+            />
+            <Cell
+              title="加载提示"
+              isLink
+              onClick={() => {
+                Toast.loading({
+                  message: "加载中...",
+                  forbidClick: true,
+                });
+              }}
+            />
+            <Cell
+              title="成功提示"
+              isLink
+              onClick={() => Toast.success("成功文案")}
+            />
+            <Cell
+              title="失败提示"
+              isLink
+              onClick={() => Toast.fail("失败文案")}
+            />
+          </> */}
         </div>
       </div>
     );
