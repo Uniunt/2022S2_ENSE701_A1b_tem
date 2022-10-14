@@ -58,18 +58,10 @@ router.delete("/:id", (req, res) => {
     .catch((err) => res.status(404).json({ error: "No such a book" }));
 });
 
-router.post("/search_article_state", (req, res) => {
-  Book.find({ status: req.body.status })
+router.post("/search_article", (req, res) => {
+  Book.find({ title: req.body.title })
     .then((book) => res.json(book))
     .catch((err) => res.status(404).json({ nobooksfound: "No article found" }));
-});
-
-router.post("/moderate/:id", (req, res) => {
-  Book.findByIdAndUpdate(req.params.id, { status: "yes" })
-    .then((book) => res.json({ msg: "Updated successfully" }))
-    .catch((err) =>
-      res.status(400).json({ error: "Unable to update the Database" })
-    );
 });
 
 module.exports = router;

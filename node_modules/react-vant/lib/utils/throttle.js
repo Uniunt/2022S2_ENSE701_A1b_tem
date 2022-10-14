@@ -1,0 +1,46 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _react() {
+  const data = _interopRequireDefault(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+var _base = require("./base");
+
+var _debounce = require("./debounce");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// https://github.com/lodash/lodash/blob/master/throttle.js
+function throttle(func, wait, options) {
+  let leading = true;
+  let trailing = true;
+
+  if (typeof func !== 'function') {
+    throw new TypeError('Expected a function');
+  }
+
+  if ((0, _base.isObject)(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  return (0, _debounce.debounce)(func, wait, {
+    leading,
+    trailing,
+    'maxWait': wait
+  });
+}
+
+var _default = throttle;
+exports.default = _default;

@@ -1,0 +1,130 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLazyImagePlaceholder = exports.default = exports.IMAGE_KEY = void 0;
+
+function _react() {
+  const data = _interopRequireDefault(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _tslib() {
+  const data = require("tslib");
+
+  _tslib = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _jsxRuntime() {
+  const data = require("react/jsx-runtime");
+
+  _jsxRuntime = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _clsx() {
+  const data = _interopRequireDefault(require("clsx"));
+
+  _clsx = function () {
+    return data;
+  };
+
+  return data;
+}
+
+function _icons() {
+  const data = require("@react-vant/icons");
+
+  _icons = function () {
+    return data;
+  };
+
+  return data;
+}
+
+var _Image = _interopRequireDefault(require("./Image"));
+
+var _lazyload = _interopRequireDefault(require("../lazyload"));
+
+var _constant = require("../utils/constant");
+
+var _utils = require("../utils");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const getLazyImagePlaceholder = bem => (0, _jsxRuntime().jsx)("div", Object.assign({
+  className: (0, _clsx().default)(bem('loading'))
+}, {
+  children: (0, _jsxRuntime().jsx)(_icons().Photo, {
+    className: (0, _clsx().default)(bem('loading-icon'))
+  })
+}));
+
+exports.getLazyImagePlaceholder = getLazyImagePlaceholder;
+const [bem] = (0, _utils.createNamespace)('image');
+
+const LazyImage = props => {
+  const {
+    lazyload
+  } = props,
+        imageProps = (0, _tslib().__rest)(props, ["lazyload"]);
+
+  const renderPlaceholder = () => {
+    if (typeof lazyload === 'boolean') return getLazyImagePlaceholder(bem);
+    return lazyload.placeholder || getLazyImagePlaceholder(bem);
+  };
+
+  if (lazyload) {
+    const {
+      className,
+      style,
+      height,
+      width
+    } = imageProps;
+    const attrs = {
+      className: (0, _clsx().default)(className, bem({
+        block: imageProps.block
+      })),
+      style: Object.assign(Object.assign({}, style), {
+        height,
+        width
+      })
+    };
+    return (0, _jsxRuntime().jsx)(_lazyload.default, Object.assign({}, attrs, {
+      placeholder: renderPlaceholder()
+    }, {
+      children: (0, _jsxRuntime().jsx)(_Image.default, Object.assign({}, imageProps))
+    }));
+  }
+
+  return (0, _jsxRuntime().jsx)(_Image.default, Object.assign({}, imageProps));
+};
+
+LazyImage.defaultProps = {
+  fit: 'fill',
+  errorIcon: (0, _jsxRuntime().jsx)(_icons().PhotoFail, {}),
+  loadingIcon: (0, _jsxRuntime().jsx)(_icons().Photo, {}),
+  showError: true,
+  showLoading: true,
+  block: true
+};
+const IMAGE_KEY = Symbol('image');
+exports.IMAGE_KEY = IMAGE_KEY;
+const ImageNamespace = Object.assign(LazyImage, {
+  [_constant.COMPONENT_TYPE_KEY]: IMAGE_KEY
+});
+var _default = ImageNamespace;
+exports.default = _default;

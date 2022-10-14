@@ -1,0 +1,32 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mergeLocale = exports.default = void 0;
+
+function _react() {
+  const data = _interopRequireDefault(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+var _deepAssign = require("../../utils/deep-assign");
+
+var _base = require("./base");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const zhCN = (0, _deepAssign.deepAssign)(_base.base, {});
+
+const mergeLocale = (baseLocal, mergeLocal) => {
+  return (0, _deepAssign.deepAssign)(baseLocal, mergeLocal);
+};
+
+exports.mergeLocale = mergeLocale;
+var _default = zhCN;
+exports.default = _default;

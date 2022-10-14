@@ -1,0 +1,54 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.cancelRaf = cancelRaf;
+exports.doubleRaf = doubleRaf;
+exports.raf = raf;
+exports.root = void 0;
+
+function _react() {
+  const data = _interopRequireDefault(require("react"));
+
+  _react = function () {
+    return data;
+  };
+
+  return data;
+}
+
+var _ = require(".");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable @typescript-eslint/unbound-method */
+const root = _.inBrowser ? window : global;
+exports.root = root;
+let prev = Date.now();
+
+function rafPolyfill(fn) {
+  const curr = Date.now();
+  const ms = Math.max(0, 16 - (curr - prev));
+  const id = setTimeout(fn, ms);
+  prev = curr + ms;
+  return id;
+}
+
+function raf(fn) {
+  const requestAnimationFrame = root.requestAnimationFrame || rafPolyfill;
+  return requestAnimationFrame.call(root, fn);
+} // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
+
+function cancelRaf(id) {
+  const cancelAnimationFrame = root.cancelAnimationFrame || root.clearTimeout;
+  cancelAnimationFrame.call(root, id);
+} // double raf for animation
+
+
+function doubleRaf(fn) {
+  raf(() => {
+    raf(fn);
+  });
+}
