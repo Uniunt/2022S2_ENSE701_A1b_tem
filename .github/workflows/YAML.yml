@@ -13,7 +13,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "mern-ecommerce-v1" #Must be unique in Heroku
-          heroku_email: "safnaj99@gmail.com"
-          appdir: "backend" # <- This will point to the api folder in your project
-          procfile: "web:node backend/server.js"
+          heroku_app_name: "a1btest119" #Must be unique in Heroku
+          heroku_email: "uniunt1999@gmail.com"
+          appdir: "2022S2_ENSE701_A1b_tem" # <- This will point to the api folder in your project
+          procfile: "web:node 2022S2_ENSE701_A1b_tem/app.js"
