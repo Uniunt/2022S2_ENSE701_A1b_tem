@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import "../App.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -58,7 +58,7 @@ class ShowBookList extends Component {
               <br />
               <h2 className="display-4 text-center">Article List</h2>
             </div>
-            <div>
+            <div className="search">
               <input></input>
               <button>Search</button>
             </div>
@@ -73,6 +73,7 @@ class ShowBookList extends Component {
                 Home
               </Link>
             </div>
+
             {/* <div className="col-md-12">
               <Link to="/" className="btn btn-outline-warning float-right">
                 Home
