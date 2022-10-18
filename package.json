@@ -7,7 +7,7 @@
     "start": "node app.js",
     "client": "cd frontend && npm run start",
     "app": "nodemon app.js",
-    “test”: "cd frontend && npm test",
+    "test": "cd frontend && npm test",
     "build": "cd frontend && npm run build",
     "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
