@@ -1,19 +1,32 @@
-name: Deploy
+name: CI_action
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "a1btest119" #Must be unique in Heroku
-          heroku_email: "uniunt1999@gmail.com"
-          appdir: "2022S2_ENSE701_A1b_tem" # <- This will point to the api folder in your project
-          procfile: "web:node 2022S2_ENSE701_A1b_tem/app.js"
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run the tests
+      run: npm test
+
